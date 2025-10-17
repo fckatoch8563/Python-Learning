@@ -1,0 +1,11 @@
+.venv/
+# Byte-compiled / build files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+
+# VS Code workspace settings (if you prefer not to commit)
+.vscode/
