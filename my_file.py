@@ -1,28 +1,16 @@
-import timeit
+data = {
+    "Name": ["Alice", "Bob", "Charlie", "David", "Eva"],
+    "Age": [24, 27, 22, 32, 29],
+    "City": ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix"],
+}
 
-import numpy as np
+# indices sorted by Age descending
+sorted_idx = sorted(range(len(data["Age"])), key=lambda i: data["Age"][i], reverse=True)
+print(sorted_idx)  # [3, 4, 1, 0, 2]
 
+# reconstruct dict with columns re-ordered according to those indices
+data_sorted = {k: [v[i] for i in sorted_idx] for k, v in data.items()}
+print(data_sorted)
 
-def solve_monty_hall_version_2_numpy():
-    repeats = 1_000_000
-    doors = np.zeros((repeats, 3))
-    doors[:, 0] = 1  # place the car behind door 0
-
-    rng = np.random.default_rng()
-    rng.permuted(doors, axis=1, out=doors)
-
-    doors[:, 1:].sort()
-    means = doors.mean(axis=0)
-
-    print(f"The success rate when switching is " f"{means[2]:.3%}")
-
-    print(f"The success rate when keeping is " f"{means[0]:.3%}")
-
-
-print(
-    timeit.timeit(
-        "solve_monty_hall_version_2_numpy()",
-        globals=globals(),
-        number=10,
-    )
-)
+print(data_sorted["Name"])  # ['David', 'Eva', 'Bob', 'Alice', 'Charlie']
+print(data_sorted["Age"])  # [32, 29, 27, 24, 22]
