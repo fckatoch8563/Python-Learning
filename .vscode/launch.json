@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Current Python File (Integrated Terminal)",
+            "type": "debugpy",
+            "request": "launch",
+            "preLaunchTask": "save-all",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "VIRTUAL_ENV": "${workspaceFolder}/.venv",
+                "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+            }
+        },
+        {
+            "name": "Run current file via task (silent)",
+            "type": "debugpy",
+            "request": "launch",
+            "preLaunchTask": "Run current Python file (venv)",
+            "program": "${workspaceFolder}/scripts/launch_noop.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true,
+            "env": {
+                "VIRTUAL_ENV": "${workspaceFolder}/.venv",
+                "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+            }
+        }
+    ]
+}

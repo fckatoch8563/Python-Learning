@@ -8,4 +8,4 @@ venv/
 env/
 
 # VS Code workspace settings (if you prefer not to commit)
-.vscode/
+.vscode/keybindings.json
