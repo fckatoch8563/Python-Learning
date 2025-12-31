@@ -32,6 +32,35 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Check Python Syntax (venv)",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/bin/python",
+            "args": [
+                "-m",
+                "py_compile",
+                "${file}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Lint (flake8 && pyright)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "\"${workspaceFolder}/.venv/bin/flake8\" \"${file}\" && npx pyright \"${file}\""
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
         }
     ]
 }
