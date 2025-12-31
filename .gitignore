@@ -1,11 +1,44 @@
-.venv/
-# Byte-compiled / build files
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
 
-# Virtual environments
+# Virtual Environment
+.venv/
 venv/
+ENV/
 env/
 
-# VS Code workspace settings (if you prefer not to commit)
-.vscode/keybindings.json
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Lock files
+uv.lock
+*.lock
+
+# Test files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.log
+*.tmp
+tempCodeRunnerFile.py

@@ -114,59 +114,44 @@
 #####################################################################################################
 # EXAMPLE 4 - CLIP LINE TO RECTANGLE
 
-import pygame
+import sys
 
-pygame.init()
-clock = pygame.time.Clock()  # Create a clock object to manage the frame rate
-win_width = 500
-win_height = 400
-window = pygame.display.set_mode((win_width, win_height))
-while True:
-    for event in pygame.event.get():  # Handle events
-        if event.type == pygame.QUIT:  # Handle window close
-            pygame.quit()  # Close the Pygame window
-            raise SystemExit  # Exit the program
-    # Begin drawing statements
-    # Draw a red rectangle centered in the window
-    rect_width, rect_height = 100, 50
-    win_width, win_height = 500, 400
-    center_x = win_width // 2 - rect_width // 2
-    center_y = win_height // 2 - rect_height // 2
-    rect = pygame.Rect(center_x, center_y, rect_width, rect_height)
-    pygame.draw.rect(window, (255, 0, 0), rect)
+# When tests import this module (e.g. pytest) we must not run GUI demos.
+# Use RUN_DEMOS to guard runtime demos so import-time execution is avoided.
+RUN_DEMOS = "pytest" not in sys.modules
 
-    # Line endpoints
-    line_start = (100, 100)
-    line_end = (400, 350)
+if RUN_DEMOS:
+    import pygame
 
-    # def clip_line_to_rect(rect, p1, p2):
-    #     # Use pygame's built-in clipline to get the part inside the rect
-    #     inside = rect.clipline(p1, p2)
-    #     if not inside:
-    #         # No intersection, draw the whole line
-    #         return [(p1, p2)]
-    #     # inside can be a tuple of two points ((ix1, iy1), (ix2, iy2))
-    #     if len(inside) == 2 and isinstance(inside[0], tuple):
-    #         (ix1, iy1), (ix2, iy2) = inside
-    #     else:
-    #         ix1, iy1, ix2, iy2 = inside
-    #     segs = []
-    #     if (p1 != (ix1, iy1)):
-    #         segs.append((p1, (ix1, iy1)))
-    #     if (p2 != (ix2, iy2)):
-    #         segs.append(((ix2, iy2), p2))
-    #     return segs
+    pygame.init()
+    clock = pygame.time.Clock()  # Create a clock object to manage the frame rate
+    win_width = 500
+    win_height = 400
+    window = pygame.display.set_mode((win_width, win_height))
+    while True:
+        for event in pygame.event():  # Handle events
+            if event.type == pygame.QUIT:  # Handle window close
+                pygame.quit()  # Close the Pygame window
+                raise SystemExit  # Exit the program
+        # Begin drawing statements
+        # Draw a red rectangle centered in the window
+        rect_width, rect_height = 100, 50
+        win_width, win_height = 500, 400
+        center_x = win_width // 2 - rect_width // 2
+        center_y = win_height // 2 - rect_height // 2
+        rect = pygame.Rect(center_x, center_y, rect_width, rect_height)
+        pygame.draw.rect(window, (255, 0, 0), rect)
 
-    # Draw the line only outside the rectangle
-    # for seg_start, seg_end in clip_line_to_rect(rect, line_start, line_end):
-    #     pygame.draw.line(window, (255, 255, 0), seg_start, seg_end, 5)
+        # Line endpoints
+        line_start = (100, 100)
+        line_end = (400, 350)
 
-    # End drawing statements
-    pygame.display.update()  # Update the display ̰
-    clock.tick(60)  # Limit to 60 frames per second
+        # End drawing statements
+        pygame.display.update()  # Update the display ̰
+        clock.tick(60)  # Limit to 60 frames per second
 
-pygame.quit()
-sys.exit()
+    pygame.quit()
+    sys.exit()
 ##########################################################################################
 
 # def draw_rainbow_squares():
@@ -255,4 +240,5 @@ def draw_color_boxes_with_hex():
 
 
 # Uncomment below to run the color box demo
-draw_color_boxes_with_hex()
+if RUN_DEMOS:
+    draw_color_boxes_with_hex()
