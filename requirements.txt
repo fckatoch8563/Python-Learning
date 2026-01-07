@@ -1,0 +1,6 @@
+# Python packages
+flake8
+pyright
+black
+ipykernel
+jupyter
