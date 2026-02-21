@@ -1,0 +1,66 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "save-all",
+            "type": "shell",
+            "command": "${command:workbench.action.files.saveAll}",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+                "showReuseMessage": false
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "detail": "internal: preLaunch save-all (hidden)"
+        },
+        {
+            "label": "Run current Python file (venv)",
+            "type": "shell",
+            "command": "${workspaceFolder}/scripts/run_with_venv.sh \"${file}\"",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Check Python Syntax (venv)",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/bin/python",
+            "args": [
+                "-m",
+                "py_compile",
+                "${file}"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Lint (flake8 && pyright)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "\"${workspaceFolder}/.venv/bin/flake8\" \"${file}\" && npx pyright \"${file}\""
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
